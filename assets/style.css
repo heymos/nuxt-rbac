@@ -1,0 +1,15 @@
+* {
+  box-sizing: border-box;
+  margin: 5px;
+  padding: 0;
+  font-size: 20px;
+  vertical-align: top;
+}
+
+body {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center; 
+}

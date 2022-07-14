@@ -16,8 +16,20 @@ export default {
     ]
   },
 
+  ssr: false,
+
+  auth: {
+    strategies: {
+      customStrategy: {
+        scheme: '~/schemes/customScheme',
+        /* ... */
+      }
+    }
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/style'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
