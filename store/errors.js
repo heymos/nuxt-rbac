@@ -1,12 +1,12 @@
 export const state = () => ({
-  errors: [
-    {
+  errors: {
+    incorrectLogin: {
       id: "1",
       description: "Неверный логин или пароль",
     },
-  ]
+  }
 })
 
 export const getters = {
-  getUsers: s => s.errors
+  getErrors: s => s.errors
 }

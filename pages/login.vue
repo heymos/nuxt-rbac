@@ -1,6 +1,10 @@
 <template>
   <div>
 
+    <div class="popup" v-if="incorrectLogin">
+      <p>{{errors.incorrectLogin.description}}</p>
+    </div>
+
     <form @submit.prevent="onSubmit">
       <input type="text" placeholder="your login..." v-model="login">
       <input type="text" placeholder="your password..." v-model="password">
@@ -18,24 +22,26 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from "vuex"
+  import { mapGetters } from "vuex"
 
   export default {
     
     layout: 'auth',
 
-    computed: {
-      ...mapGetters({
-        users: "users/getUsers",
-        data: "session/hasData"
-      })
-    },
-
     data() {
       return {
-        login: '',
-        password: '',
+        login:          'admin@example.com',
+        password:       '123',
+        incorrectLogin: false,
       }
+    },
+
+    computed: {
+      ...mapGetters({
+        users:  "users/getUsers",
+        data:   "session/hasData",
+        errors: "errors/getErrors"
+      })
     },
 
     methods: {
@@ -51,7 +57,8 @@
           this.$router.push('/')
         }
         else {
-          alert("Password or username is not correct")
+          this.incorrectLogin = true
+          setTimeout( () => this.incorrectLogin = false, 5000 )
         }
 
       }

@@ -32,7 +32,6 @@ export const actions = {
   },
 
   async loadUserData({commit}, newUserData) {
-    console.log(newUserData)
     commit('updateUserData', newUserData)
   },
 
@@ -40,7 +39,7 @@ export const actions = {
 
 export const getters = {
 
-  hasToken: s => !!s.token,
-  hasData: s => s.userData
+  userToken: s => !!s.token,
+  userData: s => s.userData
   
 }

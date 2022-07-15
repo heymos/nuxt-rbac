@@ -1,6 +1,6 @@
 export default function ({ store, redirect }) {
 
-  if (!store.getters["session/hasToken"]) {
+  if (!store.getters["session/userToken"]) {
     redirect("/login")
   }
 }

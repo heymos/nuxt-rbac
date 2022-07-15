@@ -24,6 +24,22 @@ export const state = () => ({
   ]
 })
 
+export const mutations = {
+
+  updateRole(state, args) {
+    state.users.find( user => user.id === args.userId ).role = args.newRole
+  },
+
+}
+
+export const actions = {
+
+  async loadNewRole({commit}, args) {
+    commit('updateRole', args)
+  },
+
+}
+
 export const getters = {
   getUsers: s => s.users
 }

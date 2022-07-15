@@ -1,29 +1,42 @@
 <template>
   <div class="columns">
+    
+    <Popup></Popup>
 
-    <sidebar>
-      <ul>
-        <li></li>
-      </ul>
-    </sidebar>
+    <aside>
+      <div class="wrap" v-if="data.role !== 'user'">
+        <h2>Users:</h2>
+        <ul>
+          <li v-for="user in users" :key="user.id">
+            <p>{{user.id}}</p>
+            <p>{{user.role}}</p>
+          <div class="buttons" v-if="(data.role == 'admin')&&(user.role !== 'admin')">
+              <button @click="setRole(user.id, 'manager')">Manager</button>
+              <button @click="setRole(user.id, 'user')">User</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </aside>
 
     <main>
       <h2>Products</h2>
 
-      <div class="admin">
-        <div class="item">
-          <img src="" alt="">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-      </div>
+      <ul>
+        <li v-for="product in products" :key="product.id">
+          <p>{{product.name}}</p>
+          <p>{{product.price}}</p>
 
-      <div class="manager">
+          <div class="buttons">
+            <template v-if="(data.role == 'admin') || (data.role == 'manager')">
+              <button @click="showPopup('editProductData', product)">Edit</button>
+              <button @click="deleteItem(product.id)">Delete</button>
+            </template>
+            <button>Buy</button>
+          </div>
+        </li>
 
-      </div>
-
-      <div class="user">
-
-      </div>
+      </ul>
     </main>
 
   </div>
@@ -38,12 +51,39 @@
 
     computed: {
       ...mapGetters({
-        user: "session/hasData"
+        users:       "users/getUsers",
+        data:        "session/userData",
+        products:    "products/getProducts"
       })
+    },
+
+    methods: {
+
+      setRole(userId, newRole) {
+        this.$store.dispatch("users/loadNewRole", {userId, newRole})
+      },
+
+      showPopup (newPopupValue, productData) {
+        this.$store.dispatch("popup/loadNewPopupValue", {newPopupValue, productData})
+      },
+
+      deleteItem (productId) {
+        this.$store.dispatch("products/removeProduct", productId)
+      }
+
     }
 
   }
 </script>
 
 <style>
+  ul li {
+    list-style: none;
+    padding: 20px;
+    background: #000;
+  }
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 </style>
