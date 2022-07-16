@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="inner">
 
-    <div class="popup" v-if="incorrectLogin">
+    <div class="error" v-if="incorrectLogin">
       <p>{{errors.incorrectLogin.description}}</p>
     </div>
 

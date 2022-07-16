@@ -1,11 +1,10 @@
-<template>
-  <header>
+<template lang="pug">
 
-    <p>{{user.name}}</p>
-    <p>{{user.role}}</p>
-    <button @click="onSubmit();closePopup()">Logout</button>
+  header
+    p= "{{user.name}}"
+    p= "{{user.role}}"
+    button( @click="onSubmit();closePopup()" )= "Logout"
 
-  </header>
 </template>
 
 <script>

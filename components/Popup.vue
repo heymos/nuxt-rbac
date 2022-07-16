@@ -1,16 +1,22 @@
-<template>
-  <div class="popup" v-if="popup.display">
-    <button @click.prevent="closePopup">Close</button>
-    <div class="edit-product" v-if="popup.value == 'editProductData'">
-      <p>Edit {{popup.temp.id}}</p>
-      <form>
-        <input type="text" placeholder="Enter new name..." v-model="name">
-        <input type="number" min="0" step="any" placeholder="Enter new price..." v-model="price">
-        <p>{{updater}}</p>
-        <button @click.prevent="editProduct(name, price)">Edit</button>
-      </form>
-    </div>
-  </div>
+<template lang="pug">
+
+  //- .popup(v-if="popup.display")
+  //-   button( @click.prevent="closePopup" )= "Close"
+  //-   .edit-product( v-if="popup.value == 'editProductData'" )
+  //-   form
+  //-     input( type="text" placeholder="Enter new name..." v-model="name" )
+  //-     input( type="number" min="0" step="any" placeholder="Enter new price..." v-model="price" )
+  //-     button( @click.prevent="editProduct(name, price)" )= "Edit"
+
+  .popup(v-if='popup.display')
+    button(@click.prevent='closePopup') Close
+    .edit-product(v-if="popup.value == 'editProductData'")
+      form
+        input(type='text' placeholder='Enter new name...' v-model='name')
+        input(type='number' min='0' step='any' placeholder='Enter new price...' v-model='price')
+        p {{updater}}
+        button(@click.prevent='editProduct(name, price)') Edit
+
 </template>
 
 <script>
@@ -32,7 +38,8 @@
       }),
 
       updater () {
-        this.updateProps()
+        this.name = this.popup.temp.name
+        this.price = this.popup.temp.price
       }
 
     },
