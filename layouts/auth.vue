@@ -1,6 +1,15 @@
-<template>
-  <div>
-    <h1>Auth</h1>
-    <Nuxt />
-  </div>
+<template lang='pug'>
+.center
+  Nuxt
 </template>
+
+<style lang='stylus'>
+
+.center {
+  display grid
+  align-items center
+  justify-content center
+  height 100vh
+}
+
+</style>

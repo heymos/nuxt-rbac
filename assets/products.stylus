@@ -1,0 +1,39 @@
+main
+  grid-area main
+  padding 20px
+  border-top 1px solid #ccc
+  border-right 1px solid #ccc
+  background #fff
+
+  & > h2
+    margin-bottom 20px
+
+  ul
+    display grid
+    grid-template-columns 1fr 1fr
+    grid-gap: 20px 10px
+
+    li
+      background #f5f5f5
+
+      .text
+        padding 10px
+
+      h3
+        font-size 18px
+        font-weight 700
+
+      p.price
+        font-size 24px
+        color #ccc
+        margin-top 10px
+        color: #41d74c;
+
+      .buttons
+        display grid
+        grid-template-columns 1fr 1fr 1fr
+
+        button
+          border-right 1px solid #ccc
+          &:last-of-type
+            border-right none

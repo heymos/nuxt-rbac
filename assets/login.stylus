@@ -1,0 +1,33 @@
+.login
+  position relative
+  max-width 500px
+  padding 20px 30px 100px
+  border-top 5px solid #3c4ecb
+  border-bottom 5px solid #000
+  background #eaedff
+
+  .error
+    margin-bottom 20px
+  
+  input
+    margin-bottom 15px
+    font-size 20px
+
+  button
+    margin-top 20px
+
+  .note
+    position absolute
+    bottom -20px
+    right 0
+    transform rotate(10deg)
+    margin-top 20px
+    padding 20px
+    border 1px dashed #555
+    border-top-right-radius 10px;
+    background #f5dda7
+
+    p
+      margin-bottom 5px
+      font-size 18px
+      font-style italic

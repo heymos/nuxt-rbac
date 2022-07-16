@@ -1,53 +1,48 @@
-<template>
-  <main>
-    
-    <h2>Products</h2>
+<template lang='pug'>
 
-    <ul>
-      <li v-for="product in products" :key="product.id">
+main
+  h2= 'Products:'
 
-        <p>{{product.name}}</p>
+  ul
+    li( v-for='product in products' :key='product.id' )
+      img( src='../assets/default.svg' )
+      .text
+        h3= '{{ product.name }}'
+        p.price= '{{ product.price }}$'
+      
+      .buttons
+        template( v-if="( data.role == 'admin' ) || ( data.role == 'manager' )" )
+          button( @click="showPopup( 'editProductData', product )" )= 'Edit'
+          button( @click='deleteItem( product.id )' )= 'Delete'
+        button= 'Buy'
 
-        <p>{{product.price}}</p>
-
-        <div class="buttons">
-          <template v-if="(data.role == 'admin') || (data.role == 'manager')">
-            <button @click="showPopup('editProductData', product)">Edit</button>
-            <button @click="deleteItem(product.id)">Delete</button>
-          </template>
-
-          <button>Buy</button>
-        </div>
-
-      </li>
-    </ul>
-
-  </main>
 </template>
 
+<style lang='stylus' src='../assets/products.stylus'></style>
+
 <script>
-  import { mapGetters } from "vuex"
+  import { mapGetters } from 'vuex';
 
   export default {
 
     computed: {
       ...mapGetters({
-        data:        "session/userData",
-        products:    "products/getProducts"
+        data:     'session/userData',
+        products: 'products/getProducts',
       })
     },
 
     methods: {
 
-      showPopup (newPopupValue, productData) {
-        this.$store.dispatch("popup/loadNewPopupValue", {newPopupValue, productData})
+      showPopup ( newPopupValue, productData ) {
+        this.$store.dispatch( 'popup/loadNewPopupValue', {newPopupValue, productData} );
       },
 
-      deleteItem (productId) {
-        this.$store.dispatch("products/removeProduct", productId)
-      }
+      deleteItem ( productId ) {
+        this.$store.dispatch( 'products/removeProduct', productId );
+      },
 
-    }
+    },
 
   }
 </script>

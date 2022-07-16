@@ -1,6 +1,3 @@
-<template>
-  <div class="dashboard">
-    <Header></Header>
-    <Nuxt />
-  </div>
+<template lang='pug'>
+Nuxt
 </template>

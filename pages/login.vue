@@ -1,28 +1,26 @@
-<template>
-  <div class="inner">
+<template lang='pug'>
 
-    <div class="error" v-if="incorrectLogin">
-      <p>{{errors.incorrectLogin.description}}</p>
-    </div>
+.login
+  .error( v-if='incorrectLogin' )
+    p= '{{ errors.incorrectLogin.description }}'
 
-    <form @submit.prevent="onSubmit">
-      <input type="text" placeholder="your login..." v-model="login">
-      <input type="text" placeholder="your password..." v-model="password">
-      <button type="submit">Войти</button>
-    </form>
-    
-    <div class="note">
-      <p>admin@example.com</p>
-      <p>user01@example.com</p>
-      <p>user02@example.com</p>
-      <p>passwords: 123</p>
-    </div>
+  form( @submit.prevent='onSubmit' )
+    input( type='text' placeholder='your login...' v-model='login' )
+    input( type='text' placeholder='your password...' v-model='password' )
+    button( type='submit' )= 'Log In'
 
-  </div>
+  .note
+    p= 'admin@example.com'
+    p= 'user01@example.com'
+    p= 'user02@example.com'
+    p= 'passwords: 123'
+
 </template>
 
+<style lang='stylus' src='../assets/login.stylus'></style>
+
 <script>
-  import { mapGetters } from "vuex"
+  import { mapGetters } from 'vuex';
 
   export default {
     
@@ -38,9 +36,9 @@
 
     computed: {
       ...mapGetters({
-        users:  "users/getUsers",
-        data:   "session/hasData",
-        errors: "errors/getErrors"
+        users:  'users/getUsers',
+        data:   'session/hasData',
+        errors: 'errors/getErrors',
       })
     },
 
@@ -48,21 +46,21 @@
       onSubmit () {
 
         // Check user in users.js
-        const userData = this.users.find( user => ( user.login === this.login )&&( user.password === this.password ) )
+        const userData = this.users.find( user => ( user.login === this.login )&&( user.password === this.password ));
         
         // If user has been defined, login and set user data
         if ( !!userData ) {
-          this.$store.dispatch("session/loadUserData", userData)
-          this.$store.dispatch("session/login")
-          this.$router.push('/')
+          this.$store.dispatch( 'session/loadUserData', userData );
+          this.$store.dispatch( 'session/login' );
+          this.$router.push('/');
         }
         else {
-          this.incorrectLogin = true
-          setTimeout( () => this.incorrectLogin = false, 5000 )
+          this.incorrectLogin = true;
+          setTimeout( () => this.incorrectLogin = false, 5000 );
         }
 
-      }
-    }
+      },
+    },
 
   }
 </script>

@@ -2,7 +2,7 @@ export const state = () => ({
   errors: {
     incorrectLogin: {
       id: "1",
-      description: "Неверный логин или пароль",
+      description: "Incorrect username or password.",
     },
   }
 })

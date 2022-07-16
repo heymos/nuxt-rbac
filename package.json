@@ -18,6 +18,8 @@
   },
   "devDependencies": {
     "pug": "^3.0.2",
-    "pug-plain-loader": "^1.1.0"
+    "pug-plain-loader": "^1.1.0",
+    "stylus": "^0.58.1",
+    "stylus-loader": "^3.0.2"
   }
 }
