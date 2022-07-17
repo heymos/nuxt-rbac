@@ -1,11 +1,12 @@
 header
   grid-area header
   display grid
-  grid-template-columns: 1fr 1fr auto
+  grid-template-columns: auto 1fr auto
   align-items center
   padding 20px
   margin-bottom 30px
   border-bottom 1px solid #ccc
+  text-align center
   background #fff
   
   button

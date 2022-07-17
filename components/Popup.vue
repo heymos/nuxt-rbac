@@ -1,15 +1,18 @@
 <template lang='pug'>
 
 .popup( v-if='popup.display' )
-  button( @click.prevent='closePopup' )= 'Close'
-  .edit-product( v-if="popup.value == 'editProductData'" )
-    form
-      template {{ updater }}
-      input( type='text' placeholder='Enter new name...' v-model='name' )
-      input( type='number' min='0' step='any' placeholder='Enter new price...' v-model='price' )
-      button( @click.prevent='editProduct( name, price )' )= 'Edit'
+  .wrap
+    button.close( @click.prevent='closePopup' )= 'X'
+    .edit-product( v-if="popup.value == 'editProductData'" )
+      form
+        template {{ updater }}
+        input( type='text' placeholder='Enter new name...' v-model='name' )
+        input( type='number' min='0' step='any' placeholder='Enter new price...' v-model='price' )
+        button( @click.prevent='editProduct( name, price )' )= 'Edit'
 
 </template>
+
+<style lang='stylus' src='../assets/popup.stylus'></style>
 
 <script>
   import { mapGetters } from 'vuex'

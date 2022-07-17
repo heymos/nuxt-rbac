@@ -1,0 +1,11 @@
+.inner
+  max-width 1000px
+  border-top 5px solid #3c4ecb
+  border-bottom 5px solid #000
+  background #e8e8e8
+
+  @media (min-width: 800px)
+    display grid
+    grid-template-columns 1fr auto
+    grid-template-areas 'header header' 'main sidebar'
+    margin 15px auto
